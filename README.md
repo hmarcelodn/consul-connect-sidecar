@@ -33,7 +33,7 @@ Run mTLS consul example
 **Setup Make**
  - Run Consul Agent
 
-   make setup_consul 
+   make setup_consul (for prod use make setup_consul_prod)
 
  - Run Python Simple Web Server
 
