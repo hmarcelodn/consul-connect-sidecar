@@ -1,0 +1,24 @@
+daemon off;
+master_process off;
+pid nginx.pid;
+error_log /dev/stdout;
+
+events {}
+
+http {
+  access_log /dev/stdout;
+
+  server {
+    listen 8081 default_server;
+
+    location / {
+{{range connect "webserver"}}
+      proxy_pass https://{{.Address}}:{{.Port}};
+{{end}}
+      # these refer to files written by templates above
+      proxy_ssl_certificate cert.pem;
+      proxy_ssl_certificate_key cert.key;
+      proxy_ssl_trusted_certificate ca.crt;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "service": {
+    "name": "webserver",
+    "connect": { "sidecar_service": {} },
+    "port": 9999
+  }
+}
